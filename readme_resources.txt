@@ -33,3 +33,10 @@ ______________
 Please setup an account with codeacademy and look at the free courses they have or watch youtube videos.
 
 https://www.codecademy.com
+
+Twillio, Python and Flask
+__________________________
+
+http://flask.pocoo.org/
+https://docs.python.org/3/
+https://www.twilio.com/

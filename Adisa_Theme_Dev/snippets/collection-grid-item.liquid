@@ -1,13 +1,13 @@
 <div class="grid__item {{ grid_item_width }}" {{ block.shopify_attributes }}>
   {% if featured_collection == empty %}
     {% assign block_title = 'homepage.onboarding.collection_title' | t %}
-    {% assign image_src = '' %}
+    {% assign image_src = 'asserts/ajax-loader.gif' %}
   {% else %}
     {% assign block_title = featured_collection.title %}
     {% if featured_collection.image %}
-      {% assign image_src = featured_collection.image.src | img_url: '480x480' %}
+      {% assign image_src = featured_collection.image.src | img_url: 'asserts/ajax-loader.gif' %}
     {% else %}
-      {% assign image_src = featured_collection.products.first.featured_image | img_url: '480x480' %}
+      {% assign image_src = featured_collection.products.first.featured_image | img_url: 'asserts/ajax-loader.gif``' %}
     {% endif %}
   {% endif %}
 

@@ -1138,11 +1138,12 @@ theme.Search = (function() {
     initDrawer();
     searchSubmit();
 
-    $(selectors.searchHeaderInput).add(selectors.searchHeaderSubmit).on('focus blur', function() {
+    $(selectors.searchHeaderInput).add(selectors.searchHeaderSubmit).on('blur focus', function() {
       $(selectors.searchHeader).toggleClass(classes.focus);
     });
 
     $(selectors.siteHeaderSearchToggle).on('click', function() {
+     
       var searchHeight = $(selectors.siteHeader).outerHeight();
       var searchOffset = $(selectors.siteHeader).offset().top - searchHeight;
 
@@ -1245,7 +1246,7 @@ theme.Slideshow = (function() {
 
     this.settings = {
       accessibility: true,
-      arrows: false,
+      arrows: true,
       dots: true,
       fade: true,
       draggable: true,
@@ -2696,6 +2697,7 @@ theme.SlideshowSection.prototype = _.assignIn({}, theme.SlideshowSection.prototy
 });
 
 
+
 $(document).ready(function() {
   var sections = new theme.Sections();
 
@@ -2707,6 +2709,7 @@ $(document).ready(function() {
   sections.register('map', theme.Maps);
   sections.register('slideshow-section', theme.SlideshowSection);
   sections.register('quotes', theme.Quotes);
+  //sections.register('category-bar', theme.Category-bar);
 });
 
 theme.init = function() {
@@ -2729,3 +2732,8 @@ theme.init = function() {
 };
 
 $(theme.init);
+
+
+
+
+

@@ -23,7 +23,7 @@
         {% when '3' %}
           {% assign product_index_hide_on_mobile = 14 %}
       {% endcase %}
-
+      {% comment %}
       <div class="grid grid--no-gutters grid--uniform collection">
         <div class="grid__item small--one-half medium-up--one-fifth collection__cover">
           {% if collection.image %}
@@ -38,6 +38,7 @@
             </div>
           </a>
         </div>
+        {% endcomment %}
         {% for product in collection.products limit: product_limit %}
           <div class="grid__item small--one-half medium-up--one-fifth{% if forloop.index == 1%} collection__card--first{% endif %} {% if mobile_product_limit and forloop.index > 3 %}small--hide{% elsif rows == '1' or rows == '3' %}{% if forloop.index == product_index_hide_on_mobile %}small--hide{% endif %}{% endif %}">
             {% include 'product-card', product: product, collection: collection %}

@@ -23,7 +23,7 @@
 {% endif %}
 
 <div data-section-id="{{ section.id }}" data-section-type="header-section">
-  <nav class="mobile-nav-wrapper medium-up--hide" role="navigation">
+  <nav class="mobile-nav-wrapper medium-up--hide toggleNavBar_wrapper" role="navigation">
     <ul id="MobileNav" class="mobile-nav">
       {% for link in linklists[section.settings.main_linklist].links %}
         {%- assign child_list_handle = link.title | handleize -%}
@@ -76,6 +76,7 @@
       <style>
         .announcement-bar {
           background-color: {{ section.settings.color_bg }};
+
         }
 
         .announcement-bar--link:hover {
@@ -113,7 +114,10 @@
   {% endif %}
 
   <header class="site-header{% if section.settings.align_logo == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %}" role="banner">
-    <div class="grid grid--no-gutters grid--table">
+         {% comment %}
+          replaced class="grid grid--no-gutters grid--table" with class="grid grid--no-gutters" 
+        {% endcomment %}   
+    <div class="grid grid--no-gutters" id="header_parent">
       {% if section.settings.align_logo == 'center' %}
         <div class="grid__item small--hide medium-up--one-quarter">
           <div class="site-header__search">
@@ -128,7 +132,7 @@
         {%- assign logo_classes = 'medium-up--one-quarter logo-align--left' -%}
       {% endif %}
 
-      <div class="grid__item small--one-half {{ logo_classes }}">
+      <div id="logo_m" class="grid__item logo-align--left">
         {% comment %}
           Use the uploaded logo from theme settings if enabled.
           Site name gets precedence with H1 tag on homepage, div on other pages.
@@ -167,29 +171,35 @@
         {% else %}
           </div>
         {% endif %}
-      </div>
-
-      {% if section.settings.align_logo == 'left' %}
-        <nav class="grid__item medium-up--one-half small--hide" id="AccessibleNav" role="navigation">
+        </div>
+        
+     {% if section.settings.align_logo == 'left' %}
+	 <div id="headerNavBar" > 
+       <div id="colright"></div>
+  		<nav class="grid__item small--hide" id="AccessibleNav" role="navigation">
           {% include 'site-nav' %}
         </nav>
+      </div> 
       {% endif %}
 
-
-      <div class="grid__item small--one-half medium-up--one-quarter text-right site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
-        <div class="site-header__icons-wrapper">
+      
+          
+     <div id="toggleNavBar" class=" grid__item small--one-half medium-up--one-quarter text-right {% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
+        <div class="site-header__icons-wrapper toggleNavBar_wrapper ">
+          {% unless linklists[section.settings.main_linklist] == blank %}
+          
           {% if section.settings.align_logo == 'left' %}
-            <div class="site-header__search small--hide">
-              {% include 'search-form' %}
+            <div class="site-header__search small--hide make-teal">
+              {% include 'search-form-mobile' %}
             </div>
           {% endif %}
 
-          <button type="button" class="btn--link site-header__search-toggle js-drawer-open-top medium-up--hide">
-            {% include 'icon-search' %}
+          <button type="button" class="btn--link site-header__search-toggle js-drawer-open-top medium-up--hide" id="custom_search_button">
+            {% include 'icon-search-custom' %}
             <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
           </button>
-
-          {% if shop.customer_accounts_enabled %}
+          
+            {% if shop.customer_accounts_enabled %}
             {% if customer %}
               <a href="/account" class="site-header__account">
                 {% include 'icon-login' %}
@@ -214,18 +224,16 @@
               </div>
             {% endif %}
           </a>
-
-          {% unless linklists[section.settings.main_linklist] == blank %}
-            <button type="button" class="btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open">
+            <button type="button" class="make-teal btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open">
               {% include 'icon-hamburger' %}
               {% include 'icon-close' %}
               <span class="icon__fallback-text">{{ 'layout.navigation.toggle' | t }}</span>
             </button>
           {% endunless %}
         </div>
-
-      </div>
-    </div>
+      </div>  
+	</div>
+    
   </header>
 
   {% if section.settings.align_logo == 'center' %}

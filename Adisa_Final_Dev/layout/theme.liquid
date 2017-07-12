@@ -69,23 +69,23 @@
   {{ content_for_header }}
 </head>
 
-<body class="template-{{ template | split: '.' | first }}">
+<body id="main_body" class="template-{{ template | split: '.' | first }}">
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
   <div id="SearchDrawer" class="search-bar drawer drawer--top">
     <div class="search-bar__table">
       <div class="search-bar__table-cell search-bar__form-wrapper">
-        <form class="search search-bar__form" action="/search" method="get" role="search">
-          <button class="search-bar__submit search__submit btn--link" type="submit">
+        <form class="search search-bar__form mobile-search-bar__form" action="/search" method="get" role="search">
+          <input class="search__input search-bar__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
+          <button id="mobile_search_left" class="make-teal search-bar__submit search__submit btn--link" type="submit">
             {% include 'icon-search' %}
             <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
           </button>
-          <input class="search__input search-bar__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
         </form>
       </div>
       <div class="search-bar__table-cell text-right">
-        <button type="button" class="btn--link search-bar__close js-drawer-close">
+        <button type="button" class="make-teal btn--link search-bar__close js-drawer-close" id="drop_close">
           {% include 'icon-close' %}
           <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
         </button>
@@ -94,6 +94,7 @@
   </div>
 
   {% section 'header' %}
+  {% section 'category-bar' %}
 
   <div class="page-container" id="PageContainer">
 

@@ -1,10 +1,10 @@
 <div class="page-width">
   {% if section.settings.title != blank %}
-    <div class="section-header text-center">
+    <div class="section-header text-left">
       <h2>{{ section.settings.title | escape }}</h2>
     </div>
   {% endif %}
-
+<p> DERPDERPDERP</p>
   {% case section.settings.grid %}
     {% when '2' %}
       {%- assign grid_item_width = 'medium-up--one-half' -%}
@@ -13,9 +13,14 @@
     {% when '4' %}
       {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
     {% when '5' %}
-      {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
-  {% endcase %}
-
+      {%- assign grid_item_width = 'custom-grid-layout' -%}
+  	  {%- assign item1 = section.blocks[0] -%}
+  		{%- assign item2 = section.blocks[1] -%}
+  		{%- assign item3 = section.blocks[2] -%}
+  		{%- assign item4 = section.blocks[3] -%}
+  		{%- assign item5 = section.blocks[4] -%}
+  	{% endcase %}
+{%-if grid_item_width != 'custom-grid-layout'%}
   <div class="collection-grid">
     <div class="grid grid--uniform">
       {% for block in section.blocks limit: section.blocks.size %}
@@ -26,6 +31,40 @@
       {% endfor %}
     </div>
   </div>
+  {%endif%}
+ {%-if grid_item_width == 'custom-grid-layout'%}
+  
+  <div class="custom-featured-collections">
+  <div class="custom-grid-collections-left">
+        <div class="grid__item" {{ item1.shopify_attributes }}>
+          {%- assign collection = collections[item1.settings.collection] -%}
+          {% include 'collection-grid-item' %}
+        </div>
+    <div class="grid__item" {{ item2.shopify_attributes }}>
+          {%- assign collection = collections[item2.settings.collection] -%}
+          {% include 'collection-grid-item' %}
+        </div>
+  </div>
+  
+  <div class="custom-grid-collections-center">
+    <div class="grid__item" {{ item3.shopify_attributes }}>
+          {%- assign collection = collections[item3.settings.collection] -%}
+          {% include 'collection-grid-item' %}
+        </div>
+  </div>
+  
+  <div class="custom-grid-collections-right">
+  	<div class="grid__item" {{ item4.shopify_attributes }}>
+          {%- assign collection = collections[item4.settings.collection] -%}
+          {% include 'collection-grid-item' %}
+    </div>
+    <div class="grid__item" {{ item5.shopify_attributes }}>
+          {%- assign collection = collections[item5.settings.collection] -%}
+          {% include 'collection-grid-item' %}
+        </div>
+  </div>
+  </div>
+  {%endif%}
 
   {% if section.blocks.size == 0 %}
     {% include 'no-blocks' %}

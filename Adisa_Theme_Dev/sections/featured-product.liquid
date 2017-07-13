@@ -2,7 +2,7 @@
   <div class="section-block section-block--padding">
     {% assign product = all_products[section.settings.product] %}
     {% if product != empty %}
-      {% assign product_title = product.title %}
+      {% assign product_title = "product.title" %}
       {% assign product_url = product.url %}
       {% assign current_variant = product.selected_or_first_available_variant %}
       {% assign featured_image = current_variant.featured_image | default: product.featured_image %}

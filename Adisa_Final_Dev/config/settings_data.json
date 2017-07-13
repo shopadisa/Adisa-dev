@@ -50,28 +50,15 @@
         "type": "header",
         "settings": {
           "align_logo": "left",
-          "logo": "shopify:\/\/shop_images\/LogoWhiteMinimum.png",
+          "logo": "shopify:\/\/shop_images\/LogoBlackMinimum.png",
           "logo_max_width": "80",
           "main_linklist": "main-menu",
-          "message": true,
+          "message": false,
           "home_page_only": false,
           "message_text": "Announce something here",
           "message_link": "",
           "color_bg": "#162950",
           "color_text": "#ffffff"
-        }
-      },
-      "hero": {
-        "type": "hero",
-        "settings": {
-          "image": "",
-          "alignment": "center",
-          "title": "",
-          "text": "",
-          "hero_size": "small",
-          "text_size": "medium",
-          "button_label": "",
-          "button_link": ""
         }
       },
       "slideshow": {
@@ -80,7 +67,7 @@
           "slideshow-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/ks.jpg",
+              "image": "shopify:\/\/shop_images\/bangle_be4493fd-dd2f-4a02-b013-5d64f764f90b.jpg",
               "alignment": "center",
               "title": "Support our Kickstarter",
               "subheading": "",
@@ -90,22 +77,33 @@
           "1492095993817": {
             "type": "image",
             "settings": {
-              "image": "",
+              "image": "shopify:\/\/shop_images\/insopire.jpg",
               "alignment": "center",
               "title": "The Adisa Story",
               "subheading": "",
               "link": ""
             }
+          },
+          "1499715787368": {
+            "type": "video",
+            "settings": {
+              "video_url": "https:\/\/www.youtube.com\/watch?v=r5l2XiOx-3Q",
+              "video_type": "background",
+              "image": "shopify:\/\/shop_images\/bangle.jpg",
+              "title": "",
+              "subheading": ""
+            }
           }
         },
         "block_order": [
           "slideshow-0",
-          "1492095993817"
+          "1492095993817",
+          "1499715787368"
         ],
         "settings": {
           "autoplay": true,
           "autoplay_speed": "5000",
-          "slideshow_height": "medium",
+          "slideshow_height": "small",
           "text_size": "medium"
         }
       },
@@ -147,31 +145,31 @@
           "1492096252560-0": {
             "type": "featured_collection",
             "settings": {
-              "collection": ""
+              "collection": "jewelry"
             }
           },
           "1492096252560-1": {
             "type": "featured_collection",
             "settings": {
-              "collection": ""
+              "collection": "paintings"
             }
           },
           "1492096252560-2": {
             "type": "featured_collection",
             "settings": {
-              "collection": ""
+              "collection": "cloths"
             }
           },
           "1499281567526": {
             "type": "featured_collection",
             "settings": {
-              "collection": ""
+              "collection": "gifts"
             }
           },
           "1499281569294": {
             "type": "featured_collection",
             "settings": {
-              "collection": ""
+              "collection": "center-pieces"
             }
           }
         },
@@ -212,7 +210,7 @@
       "1499281727708": {
         "type": "collection",
         "settings": {
-          "title": "Featured collection",
+          "title": "Featured Products",
           "collection": "",
           "grid": "5",
           "rows": "2",
@@ -225,21 +223,89 @@
         "settings": {
           "image": "",
           "alignment": "center",
-          "title": "",
+          "title": "Adisa Model",
           "text": "",
           "hero_size": "x-small",
           "text_size": "medium",
           "button_label": "",
           "button_link": ""
         }
+      },
+      "1499708415510": {
+        "type": "custom-content",
+        "blocks": {
+          "1499708415510-0": {
+            "type": "text",
+            "settings": {
+              "title": "Talk about Adisa's Impact",
+              "text": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>",
+              "width": "50%",
+              "alignment": "center",
+              "align_text": "left"
+            }
+          }
+        },
+        "block_order": [
+          "1499708415510-0"
+        ],
+        "settings": {
+          "title": "Changing Lives In Africa"
+        }
+      },
+      "category-bar": {
+        "type": "category-bar",
+        "blocks": {
+          "1499719443643": {
+            "type": "html",
+            "settings": {
+              "code": "<button>Clothing<\/button>\n<button>Food<\/button>",
+              "width": "100%"
+            }
+          }
+        },
+        "block_order": [
+          "1499719443643"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "1499720852419": {
+        "type": "kickstarter",
+        "blocks": {
+          "1499721875226": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Kickstarter_logo_7bae6714-dee9-4fde-afb0-078bcf9d969c.png",
+              "width": "25%",
+              "alignment": "top-left"
+            }
+          },
+          "1499721695732": {
+            "type": "video",
+            "settings": {
+              "video_url": "",
+              "width": "75%",
+              "alignment": "top-middle"
+            }
+          }
+        },
+        "block_order": [
+          "1499721875226",
+          "1499721695732"
+        ],
+        "settings": {
+          "title": ""
+        }
       }
     },
     "content_for_index": [
-      "hero",
-      "1492096252560",
       "slideshow",
+      "1492096252560",
+      "1499720852419",
       "1499281727708",
-      "1499283278526"
+      "1499283278526",
+      "1499708415510"
     ]
   },
   "presets": {

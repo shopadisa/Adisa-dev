@@ -361,7 +361,7 @@ $width-site: 1200px;
 $gutter-site: 55px;
 $gutter-site-mobile: 22px;
 $section-spacing: 20px;
-$section-spacing-small: 35px;
+$section-spacing-small: 10px;
 $border-radius: 2px;
 
 /*================ Z-Index ================*/
@@ -382,7 +382,7 @@ $color-background-hero-button: #fff;
 $color-text-hero-button: #000;
 
 /*================ Hero Slider ================*/
-$color-slideshow-arrows: #000;
+$color-slideshow-arrows: #000000;
 $color-slideshow-dots: #fff;
 
 $transition-text-slideshow: all 0.6s cubic-bezier(0.44, 0.13, 0.48, 0.87);
@@ -453,13 +453,15 @@ $slick-font-family: "slick-icons, sans-serif";
 $slick-arrow-color: $color-slideshow-arrows;
 $slick-dot-color: $color-slideshow-dots;
 $slick-dot-color-active: $slick-dot-color !default;
-$slick-prev-character: '\2190';
-$slick-next-character: '\2192';
+/* $slick-prev-character: '\2190'; */
+$slick-prev-character: url({{ 'prev.png' | asset_url }});
+/* $slick-next-character: '\2192'; */
+$slick-next-character: url({{ 'next.png' | asset_url }});
 $slick-dot-character: '\2022';
 $slick-dot-size: 6px;
 $slick-opacity-default: 0.75;
 $slick-opacity-on-hover: 1;
-$slick-opacity-not-active: 0.25;
+$slick-opacity-not-active: 1;
 
 // Only called once so make sure proper file is grabbed
 @function slick-image-url($url) {
@@ -602,13 +604,15 @@ $slick-opacity-not-active: 0.25;
   -webkit-transform: translate(0, -50%);
   -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
-  padding: 0;
+  z-index:0;
   border: none;
   &:hover, &:focus {
-    background: transparent;
+/*     background: rgba(230, 231, 233, .5); */
     color: transparent;
+    outline:none;
+
     &:before {
-      opacity: $slick-opacity-on-hover;
+      opacity:1;
     }
   }
   &.slick-disabled:before {
@@ -626,7 +630,11 @@ $slick-opacity-not-active: 0.25;
 }
 
 .slick-prev {
+  opacity: 0.2;
   left: -25px;
+  &:hover{
+    opacity: 1;
+  }
   [dir="rtl"] & {
     left: auto;
     right: -25px;
@@ -640,7 +648,11 @@ $slick-opacity-not-active: 0.25;
 }
 
 .slick-next {
+  opacity: 0.2;
   right: -25px;
+    &:hover{
+    opacity: 1;
+  }
   [dir="rtl"] & {
     left: -25px;
     right: auto;
@@ -1165,6 +1177,7 @@ $grid-breakpoints: (
   opacity: 1;
   z-index: $z-index-skip-to-content;
   transition: none;
+  outline:none;
 }
 
 /*=============== Lazy loading ===================*/
@@ -1202,7 +1215,7 @@ html {
 
 .page-width {
   @include clearfix();
-  max-width: $width-site;
+  max-width: 100%; /*======== Sabastian =======*/
   margin: 0 auto;
 }
 
@@ -1736,7 +1749,7 @@ a {
 }
 
 .btn--link {
-  background-color: transparent;
+  //background-color: #348E85; /*Chamar removed overall teal color*/
   border: 0;
   margin: 0;
   color: $color-text;
@@ -1745,6 +1758,7 @@ a {
   &:hover,
   &:focus {
     opacity: $opacity-link-hover;
+
   }
 
   .icon {
@@ -1954,6 +1968,7 @@ select {
 
   &:focus {
     border-color: darken($color-border, 10%);
+    outline:0;
   }
 
   &[disabled] {
@@ -2241,10 +2256,20 @@ $dropdown-padding: 11px 17px;
   a {
     padding: 3px 10px;
   }
-
+	
+  .no_padding {
+    padding: 0px;
+  }
+  
   li {
     display: inline-block;
   }
+  
+  #cart_login_list{
+    margin-right:12px;
+  }
+
+
 }
 
 .site-nav--centered {
@@ -2255,6 +2280,7 @@ $dropdown-padding: 11px 17px;
 .site-nav__link {
   display: block;
   white-space: nowrap;
+  color: #ffffff; /*=====Chamar edit: makes the color of the text white in the header=====*/
 
   .site-nav--centered & {
     padding-top: 0;
@@ -2895,6 +2921,13 @@ $slick-dot-size-small: 10px;
     margin-top: -12px;
   }
 }
+
+@include media-query($medium) {
+  .index-section--featured-product:first-child {
+    margin-top: -12px;
+  }
+}
+
 
 $color-blankstate: rgba($color-body-text, 0.35);
 $color-blankstate-border: rgba($color-body-text, 0.2);
@@ -3618,7 +3651,7 @@ h1.product-single__title {
 
 /*================ MODULES ================*/
 .site-header {
-  background-color: $color-body;
+  background-color: #2b2b2b; /*===Team Chamar (Charlie and Ammar) hardcoded the header color to black===*/
   position: relative;
   padding: 0 $gutter-site;
 
@@ -3700,6 +3733,7 @@ h1.product-single__title {
   .site-header__icons {
     .btn--link,
     .site-header__cart {
+      
       font-size: em($font-size-base);
     }
   }
@@ -3732,16 +3766,16 @@ h1.product-single__title {
 @include media-query($medium-up) {
   .site-header__cart,
   .site-header__account {
-    position: absolute;
+    /*position: absolute;*/
     top: 50%;
     right: 0;
     padding: 8px 0;
     @include transform(translateY(-50%));
   }
 
-  .site-header__account {
+  /*.site-header__account {
     right: 50px;
-  }
+  }*/
 }
 
 .site-header__cart-title,
@@ -3811,7 +3845,7 @@ h1.product-single__title {
 .site-header .icon-hamburger,
 .site-header .icon-close,
 .site-header .icon-cart {
-  height: 30px;
+  height: 20px; /*Chamar fixed Sabastians ugly icons*/
 
   @include media-query($medium-up) {
     margin-right: 3px;
@@ -4068,10 +4102,11 @@ h1.product-single__title {
 
 
 .search-bar__form {
+  background-color:#ffffff;
   display: table;
   width: 100%;
   position: relative;
-  height: 40px;
+  height: 30px;
   border: 1px solid transparent;
 }
 
@@ -4092,7 +4127,8 @@ h1.product-single__title {
   display: inline-block;
   vertical-align: middle;
   position: absolute;
-  left: 0;
+  //left: 0;  Chamar edit, pushes search button to the right
+  right: 0; /*Chamar edit, pushes search button to the right*/
   top: 0;
   padding: 0 0 0 5px;
   height: 100%;
@@ -4105,8 +4141,9 @@ h1.product-single__title {
   border-radius: $border-radius;
   color: $color-text;
   border-color: transparent;
-  padding-left: 35px;
-  width: 100%;
+  padding-left: 7px; /*Chamar edit: reduced the search bar padding*/
+  width: 98%; /*Chamar edit: moves 'x' to the left of the search button*/
+  height: 2em; 			/*Chamar set height of search bar*/
 
   &::-webkit-input-placeholder {
     @include placeholder-text($color-text);
@@ -4166,25 +4203,28 @@ h1.product-single__title {
 
 /*================ Header Search ================*/
 .search-header {
+  margin-top: 1em;
+  margin-bottom:1em;
   display: inline-block;
   position: relative;
   width: 100%;
   max-width: 30px;
   vertical-align: middle;
+  background-color: #ffffff;
+  max-width: 100%;
+  /*Chamar added margin top and bottom, background-color, and max-width*/
 
-  &.search--focus {
-    max-width: 250px;
-  }
 }
 
 .search-header__input {
   cursor: pointer;
+  color: #000000;
 }
 
 .search--focus {
   .search-header__input {
     outline: none;
-    border-color: $color-border;
+    border-color: #ffffff;  /*Changed this color as well to white (Chamar)*/
     cursor: auto;
   }
 
@@ -4423,7 +4463,7 @@ $mobile-nav-button-padding: 15px;
   Extends default slick slider styles.
   Extra specificity in selectors is used to override defaults.
 ==============================================================================*/
-$slideshow-height-small: 475px;
+$slideshow-height-small: 260px;
 $slideshow-height-medium: 650px;
 $slideshow-height-large: 775px;
 $slideshow-loader: #fff;
@@ -4436,11 +4476,12 @@ $color-slideshow-close-text: #000;
 
 .slideshow-wrapper {
   position: relative;
+  
 }
 
 .slideshow {
   overflow: hidden;
-  height: $slideshow-height-small - 150;
+  height: $slideshow-height-small - 50;
   margin-bottom: 0;
 
   &.slideshow--medium {
@@ -4473,13 +4514,16 @@ $color-slideshow-close-text: #000;
   .slick-prev,
   .slick-next {
     top: 0;
+
     height: 100%;
-    margin-top: 0;
+    margin-top: 130px;
+/*     padding-top: 130px; */
     width: 40px;
   }
 
   .slick-prev {
-    left: 0;
+    left: 0px;
+    z-index:100;
   }
 
   .slick-next {
@@ -4623,7 +4667,7 @@ $color-slideshow-close-text: #000;
 }
 
 .slideshow__text-content {
-  text-align: center;
+  text-align: left;
   position: absolute;
   width: 100%;
   top: 50%;
@@ -5677,10 +5721,277 @@ $toolbar-height-small: 46px;
 }
 
 
-/*================ Added by Sabastian ================*/
+/*================ Sabastian ================*/
 
-#AccessibleNav {
-  background-color: $color-newsletter-background;
-  padding-top: 0px;
+
+#nav_underline{
+  margin:0;
 }
+
+#SiteNav{
+  margin-bottom:0;
+}
+
+
+
+#cart_login_list{
+  float:right;
+}
+
+#account_nav{
+  padding:0;
+}
+
+#nav_underline{
+  width:100%;
+}
+
+#logo_m{
+  float: left;
+  max-width:80px;
+/*   padding-left:0px; */
+  height:100%;
+/*   border: 1px solid white; */
+  padding-top:1em;
+}
+
+#headerNavBar{
+    overflow:hidden;      
+}
+
+#AccessibleNav{
+/*   border:1px solid white; */
+ /*   width:92%; */
+  float:right;
+}
+
+.site-header{
+  padding: 20px;
+  padding-bottom:0px;
+}
+
+
+
+#toggleNavBar{
+  float:right;
+  display:inline-block;
+  vertical-align:center; 
+  
+}
+
+#custom_search_button{
+  background:none;
+}
+
+#drop_close{
+  //background:none; Chamar changed background color and altered the height
+  height: 2.1em;
+  padding-bottom:.4em;
+  margin-top: -.05em;
+  
+}
+
+#shopify-section-slideshow{
+  padding-bottom:0px;
+}
+
+#shopify-section-1499720852419{
+  background:black;
+}
+
+
+/*================ Chamar ================*/
+
+//Width of search bar div
+#custom_searchBar {
+ padding: 0em 10em 0em 8em 
+}
+
+//Chamar made the margin smaller on header div to make header thinner
+#shopify-section-header{
+ margin-top:-1.75em; 
+}
+
+@media only screen and (min-width: $grid-medium) {
+    #toggleNavBar {
+        display: none;
+    }
+
+}
+
+.toggleNavBar_wrapper{
+  padding-top:15px;
+}
+
+.make-teal{
+ 	background-color: #348E85; 
+}
+
+#mobile_search_left{
+ margin-right:-.2em;
+ margin-top: -.05em;
+ //padding: .2em .2em .2em .2em;
+ height: 2.1em;
+ width: 1.7em
+}
+
+#SearchDrawer{
+ background: #2b2b2b; 
+}
+
+.no-background{
+ background-color:#ffffff; 
+}
+
+.mobile-search-bar__form{
+  padding-right:1em;
+}
+
+/*Category bar styling*/
+
+#shopify-section-category-bar{
+ background-color:#E5E5E5;
+ height: 2em;
+  margin-top: -.4em;
+ padding-left: 10em;
+ padding-right:10em;
+ font-family: Arial;
+ color: #2b2b2b;
+ display:flex;
+ flex-flow: row wrap;
+ justify-content:space-around;
+
+}
+
+@media only screen and (min-width: $grid-medium) {
+    #toggleNavBar {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: $grid-medium) {
+  	#shopify-section-category-bar{
+      display:none;
+    }
+}
+
+.dropdown {
+  text-align: center;
+    float: left;
+    overflow: hidden;
+  height: 1.3em;
+  margin-top: -.4em;
+}
+
+.dropdown .dropbtn {
+    font-size: 1em;    
+    border: none;
+    outline: none;
+    padding: 0 0 0 0;
+    background-color: inherit;
+  	color: #2b2b2b;
+  	height: 1.3em;
+  	z-index:1;
+  	
+}
+
+.container a:hover, .dropdown:hover .dropbtn {
+    color: white;
+}
+
+.dropdown-content {
+  opacity: .85;
+    //float: left;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  	padding: 1em 1em 1em 1em;
+  	width: 0 auto;
+  	margin-top:-.1em;
+  	overflow:scroll;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0);
+    min-width: 50%;
+  
+}
+
+.dropdown-content .d1 ul li a, .dropdown-content .d2 ul li a{
+    
+    color: #2b2b2b;
+    padding: 1em 1em;
+    text-decoration: none;
+    text-align: left;
+}
+
+.dropdown-content .d1 ul li a:hover, .dropdown-content .d2 ul li a:hover {
+    //text-decoration: underline;
+}
+
+
+.dropdown:hover .dropdown-content{
+    display: flex;
+}
+
+.category-bar_ul{
+    list-style: none;
+    margin-right: 3em;
+    margin-left:1em;
+}
+.category-bar_ul li{
+  	padding: .5em 0 .5em 0;
+}
+
+/*-----------Featured Categories--------*/
+
+
+//NOTE: Automatically generated name for featured categories div wrapper
+#shopify-section-1492096252560{
+ background-color:white; 
+ display: inline-block;
+ width: 100%;
+
+}
+
+.custom-featured-collections{
+  
+}
+
+.custom-grid-collections-left{
+ float:left;
+  width:20em;
+}
+
+.custom-grid-collections-left > *{
+  display:block;
+  width: 15em;
+  height: 15em;
+  
+}
+
+.custom-grid-collections-center div{
+  width: 15em;
+  height:30em;
+}
+
+.custom-grid-collections-center{
+}
+
+.custom-grid-collections-right {
+  float:right;
+  width:15em;
+}
+
+.custom-grid-collections-right > *{
+  display: block;
+  width:15em;
+  height:15em;
+}
+
+
+
+
+
 
